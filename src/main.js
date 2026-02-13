@@ -36,6 +36,7 @@ dismissErrorButton.addEventListener('click', dismissError)
 document.addEventListener('DOMContentLoaded', focusOnTextInputArea)
 textInputArea.addEventListener('input', scrollTextAreaToTopAndEnableControls)
 summaryLengthInput.addEventListener('input', updateSummaryLengthText)
+console.log(summaryLengthInput.value)
 
 // Button Event Handlers
 async function summarize() {   
@@ -43,8 +44,7 @@ async function summarize() {
 
         startLoading()
         const text = textInputArea.value
-        const summaryLength = summaryLengthInput.value
-        console.log(summaryLengthInput.value)
+        const summaryLength = summaryLengthInput.value       
 
         const response = await anthropic.messages.create({
             model: 'claude-sonnet-4-20250514',
