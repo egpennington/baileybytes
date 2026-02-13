@@ -107,7 +107,6 @@ function scrollTextAreaToTopAndEnableControls() {
 
 function updateSummaryLengthText() {
     summaryLengthText.textContent = `Summary Length: ${summaryLengthInput.value} Words`
-    console.log("hello")
 }
 
 // Helper Functions
