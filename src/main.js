@@ -35,10 +35,7 @@ dismissErrorButton.addEventListener('click', dismissError)
 // Other Event Listeners
 document.addEventListener('DOMContentLoaded', focusOnTextInputArea)
 textInputArea.addEventListener('input', scrollTextAreaToTopAndEnableControls)
-summaryLengthInput.addEventListener('input', () => {
-  console.log(summaryLengthInput.value)
-  updateSummaryLengthText
-})
+summaryLengthInput.addEventListener('input', updateSummaryLengthText)
 
 // Button Event Handlers
 async function summarize() {   
@@ -110,6 +107,7 @@ function scrollTextAreaToTopAndEnableControls() {
 
 function updateSummaryLengthText() {
     summaryLengthText.textContent = `Summary Length: ${summaryLengthInput.value} Words`
+    console.log("hello")
 }
 
 // Helper Functions
