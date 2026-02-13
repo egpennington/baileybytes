@@ -4,8 +4,7 @@ import Anthropic from "@anthropic-ai/sdk" // npm install
 const SYSTEM_PROMPT = 'You are a text summarizer. When asked to summarize a text, send back the summary of it. Please only send back the summary without prefixing it with things like "Summary" or telling where the text is from. Also give me the summary as if the original author wrote it and without using a third person voice. At the end of the summary, provide 1 to 3 bullet points of actions that a user can take based on the text, prefix it with "Suggested Actions".'
 
 const anthropic = new Anthropic({
-    apiKey: import.meta.env.VITE_ANTHROPIC_SUMMARIZER_API_KEY,
-    dangerouslyAllowBrowser: true
+    apiKey: import.meta.env.VITE_ANTHROPIC_SUMMARIZER_API_KEY
 })
 
 // Constants
@@ -35,8 +34,10 @@ dismissErrorButton.addEventListener('click', dismissError)
 // Other Event Listeners
 document.addEventListener('DOMContentLoaded', focusOnTextInputArea)
 textInputArea.addEventListener('input', scrollTextAreaToTopAndEnableControls)
-summaryLengthInput.addEventListener('input', updateSummaryLengthText)
-console.log(summaryLengthInput.value)
+summaryLengthInput.addEventListener('input', () => {
+  console.log(summaryLengthInput.value)
+  updateSummaryLengthText
+})
 
 // Button Event Handlers
 async function summarize() {   
@@ -56,7 +57,7 @@ async function summarize() {
                     'content': [
                         {
                             'type': 'text',
-                            'text': `Summarize this text. Limit the length to ${summaryLength} words: ${text}`
+                            'text': `Summarize this text in exactly ${summaryLength} words: ${text}`
                         }
                     ]
                 }
